@@ -8,9 +8,10 @@ output: github_document
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
+library(readxl)
 ```
 
-## Problem 1: dataset description
+## Problem 1:
 
 Description of the dataset: 
 
@@ -19,7 +20,7 @@ Description of the dataset:
 
 ```{r problem1-1}
 nyc_transit = 
-  read_csv("/Users/aimly/Documents/Columbia/2024 Fall/BIST8105/p8105_hw2_jl6521/NYC_Transit_Subway_Entrance_And_Exit_Data.csv") %>% 
+  read_csv("./data/NYC_Transit_Subway_Entrance_And_Exit_Data.csv") %>% 
   janitor::clean_names() %>% 
   mutate(
     entry = case_match(
@@ -27,12 +28,6 @@ nyc_transit =
       "YES" ~ TRUE,
       "NO" ~ FALSE
     )) %>%
-  mutate(
-    nyc_transit, route8 = as.character(route8)
-  ) %>% 
-  mutate(
-    nyc_transit, route9 = as.character(route9)
-  ) %>% 
   select(line, station_name, station_latitude, station_longitude, starts_with("route"), entry, vending, entrance_type, ada)
   
 ```
@@ -67,13 +62,54 @@ distinct_station = nrow(transit_new)
 ada_in_A = nrow(filter(transit_new, ada == "TRUE"))
 ```
 
+## Problem 2
 
-## Including Plots
+```{problem 2 cleand data }
+Mr_Trash_Wheel = read_excel("./data/202309 Trash Wheel Collection Data.xlsx",
+                         sheet = "Mr. Trash Wheel",
+                         range = "A2:N587",
+                         na = c("NA", ".", "")) %>% 
+  janitor::clean_names() %>% 
+  filter(!is.na(dumpster)) %>% 
+  mutate(sports_balls = as.integer(sports_balls)) %>%
+  mutate(which_trashwheel = "Mr. Trash Wheel") %>%
+  mutate(year = as.character(year))
 
-You can also embed plots, for example:
+Professor_Trash_Wheel = read_excel("./data/202309 Trash Wheel Collection Data.xlsx",
+                         sheet = "Professor Trash Wheel",
+                         range = "A2:M109",
+                         na = c("NA", ".", "")) %>% 
+  janitor::clean_names() %>%
+  mutate(which_trashwheel = "Professor Trash Wheel") %>%
+  mutate(year = as.character(year))
 
-```{r pressure, echo=FALSE}
-plot(pressure)
+Gwynnda_Trash_Wheel = read_excel("./data/202309 Trash Wheel Collection Data.xlsx",
+                         sheet = "Gwynnda Trash Wheel",
+                         range = "A2:L159",
+                         na = c("NA", ".", "")) %>% 
+  janitor::clean_names() %>%
+  mutate(which_trashwheel = "Gwynnda Trash Wheel") %>%
+  mutate(year = as.character(year))
+
+combined_trash_dataset = bind_rows(Mr_Trash_Wheel,Professor_Trash_Wheel,Gwynnda_Trash_Wheel)
+nrow_trash = nrow(combined_trash_dataset) 
+
+
+total_weight = combined_trash_dataset %>% 
+  filter(which_trashwheel == "Professor Trash Wheel") %>%
+  pull(weight_tons) %>% 
+  sum(na.rm = TRUE)
+
+total_cigarette = combined_trash_dataset %>% 
+  filter(which_trashwheel == "Gwynnda Trash Wheel" & month == "June" & year == 2022) %>%
+  pull(cigarette_butts) %>% 
+  sum(na.rm = TRUE)
+
 ```
+Data description: in this combined dataset, there are `nrow_trash` observations. Key variables are weight and volume of the trash (weight_tons, volume_cubic_yards), different categories of trash (plastic_bottles, polystyrene, cigarette_butts, glass_bottles, plastic_bags, wrappers, sports_balls), and also the number of Maryland homes that are provided with electricity.
+
+The total weight of trash collected by Professor Trash Wheel is `total_weight`. The total number of cigarette butts collected by Gwynnda in June of 2022 is `total_cigarette`. 
+
+
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
