@@ -65,7 +65,8 @@ ada_in_A = nrow(filter(transit_new, ada == "TRUE"))
 ## Problem 2:
 
 ```{r problem 2 cleand data }
-Mr_Trash_Wheel = read_excel("./data/202409 Trash Wheel Collection Data.xlsx",
+Mr_Trash_Wheel = suppressMessages(
+  read_excel("./data/202409 Trash Wheel Collection Data.xlsx",
                          sheet = "Mr. Trash Wheel",
                          na = c("NA", ".", "")) %>% 
   select(-starts_with("...")) %>%
@@ -74,6 +75,7 @@ Mr_Trash_Wheel = read_excel("./data/202409 Trash Wheel Collection Data.xlsx",
   mutate(sports_balls = as.integer(sports_balls)) %>%
   mutate(which_trashwheel = "Mr. Trash Wheel") %>%
   mutate(year = as.character(year))
+)
 
 Professor_Trash_Wheel = read_excel("./data/202409 Trash Wheel Collection Data.xlsx",
                          sheet = "Professor Trash Wheel",
@@ -107,9 +109,9 @@ total_cigarette = combined_trash_dataset %>%
   sum(na.rm = TRUE)
 
 ```
-Data description: in this combined dataset, there are 927 observations. Key variables are weight and volume of the trash (weight_tons, volume_cubic_yards), different categories of trash (plastic_bottles, polystyrene, cigarette_butts, glass_bottles, plastic_bags, wrappers, sports_balls), and also the number of Maryland homes that are provided with electricity.
+Data description: in this combined dataset, there are `r nrow_trash` observations. Key variables are weight and volume of the trash (weight_tons, volume_cubic_yards), different categories of trash (plastic_bottles, polystyrene, cigarette_butts, glass_bottles, plastic_bags, wrappers, sports_balls), and also the number of Maryland homes that are provided with electricity.
 
-The total weight of trash collected by Professor Trash Wheel is 246.74. The total number of cigarette butts collected by Gwynnda in June of 2022 is 18120. 
+The total weight of trash collected by Professor Trash Wheel is `r total_weight`. The total number of cigarette butts collected by Gwynnda in June of 2022 is `r total_cigarette`. 
 
 ## Problem 3:
 
@@ -119,44 +121,45 @@ bakers = read_csv("./data/gbb_datasets/bakers.csv",
                   na = c("NA","",".","N/A")
                   ) %>% 
   janitor::clean_names() %>% 
-  mutate(baker=sub(" .*", "", baker_name)) %>% 
+  rename(season = series) %>% 
+  mutate(baker=sub(" .*", "", baker_name))%>% 
   select(-baker_name)
   
 # import and clean bakes data
 bakes = read_csv("./data/gbb_datasets/bakes.csv",
                    na = c("NA","",".","N/A")) %>% 
-  janitor::clean_names() %>% 
+  janitor::clean_names()%>% 
+  rename(season = series)%>% 
   mutate(baker=sub('"Jo"',"Jo",baker))
 
 # import and clean results data
 results = read_csv("./data/gbb_datasets/results.csv",
                    na = c("NA","",".","N/A"),
                    skip = 2) %>% 
-  janitor::clean_names()
+  janitor::clean_names()%>% 
+  rename(season = series)
 
 
 # combine the three datasets 
-bakers_results_df = anti_join(results, bakers, by = c("series", "baker" ))
-results_bakers_df = anti_join(results, bakers, by = c("series", "baker" ))
-bakers_results = left_join(results, bakers, by = c("series", "baker" ))
+bakers_results_df = anti_join(results, bakers, by = c("season", "baker" ))
+results_bakers_df = anti_join(results, bakers, by = c("season", "baker" ))
+bakers_results = left_join(results, bakers, by = c("season", "baker" ))
 
-final_df = anti_join(bakes, results, by = c("series", "baker", "episode"))
-final_df = anti_join(results, bakes, by = c("series", "baker", "episode"))
+final_df = anti_join(bakes, results, by = c("season", "baker", "episode"))
+final_df = anti_join(results, bakes, by = c("season", "baker", "episode"))
 
-merged_bake_info = left_join(bakers_results, bakes, by = c("series", "baker", "episode"))%>% 
-  arrange(series, episode)
-
-
-
-
+merged_bake_info = left_join(bakers_results, bakes, by = c("season", "baker", "episode"))%>% 
+  arrange(season, episode)
 
 write_csv(merged_bake_info, "./final_baking_dataset.csv")
 ```
 ## Describing the data cleaning process:
 I cleaned the name of the column names for all three datasets using `janitor::clean_names()`, changed all the "NA", "N/A", and all missing values to NA using `na = c("NA","",".","N/A")` in `read_csv`. 
+I also rename the column of "series" to be "season" since it's more informative. 
 When I did anti_join, I found that the bakers' names in bakers are full names. After comparing the name, I think for the other two sheets, bakers are only kept with first names. Therefore I changed the "bakers" with only the first name.
 I also found that in bakes, some bakers are names "Jo" with the quotation marks, so I remove it in the bakes document. 
 There are names in bakers that not appearing in the bakes, names in bakers that not appearing in the results, or names in the results not appearing in the bakers, etc. 
+Next, I performed left join first on results with bakers, and next join with bakes. 
 
 Briefly discuss the final dataset:
 My final dataset contains series and episode, bakers information (name, age, occupation, hometown), infomation of their bakes (signature bake, technical challenge, and show stopper), and the final result. 
@@ -164,16 +167,13 @@ My final dataset contains series and episode, bakers information (name, age, occ
 ## Reader-friendly table
 ```{r problem 3-2 reader-friendly table}
 table = merged_bake_info %>% 
-  filter(series >= 5 & (result == "WINNER" | result == "STAR BAKER")) %>% 
-  arrange(series, episode, baker) %>%
-  select(series, episode, baker, baker_age,technical, result)
+  filter(season >= 5 & (result == "WINNER" | result == "STAR BAKER")) %>% 
+  arrange(season, episode, baker) %>%
+  select(season, episode, baker, baker_age,technical, result)
 ```
 1. Most of people who are star baker or winner are younger than 60 years old. Only 3 of them are older than 60 years old. 
 2. Most people who become winners are star bakers before, but there's one person who becomes winner without being star baker (Rahul), which is surprising.
 3. Winners usually have high rank of techinical challenge, but for star bakers, the technical score seems to not matter much. 
-
-
-Import, clean, tidy, and organize the viewership data in viewership.csv. Show the first 10 rows of this dataset. What was the average viewership in Season 1? In Season 5?
 
 ## viewership data
 ```{r viewship data}
@@ -191,4 +191,4 @@ average_viewship_5 =viewers %>%
   pull(season_5) %>% 
   mean(na.rm= TRUE)
 ```
-The average viewship of the data in Season 1 is 2.77, and the  average viewship of the data in Season 5 is 19.0393. 
+The average viewship of the data in Season 1 is `r average_viewship_1`, and the average viewship of the data in Season 5 is `r average_viewship_5`. 
