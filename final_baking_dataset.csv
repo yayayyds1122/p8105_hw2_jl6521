@@ -73,7 +73,7 @@ Cinnamon and Cardamom Chelsea Bun"
 2,1,Ian,10,IN,40,Fundraiser for English Heritage,"Dunstable, Bedfordshire",Apple and Cinnamon Cupcakes,UNKNOWN
 2,1,Janet,8,IN,63,Teacher of Modern Languages,"Formby, Liverpool",Raspberry and Cream Cupcakes,Chocolate Marble Cakewith Dark and White Chocolate Truffles
 2,1,Jason,6,IN,19,Civil Engineering Student,Croydon,Lemon Meringue CupcakesApple and Cinnamon Cupcakes,UNKNOWN
-2,1,Joanne,11,IN,NA,NA,NA,NA,NA
+2,1,Jo,11,IN,41,Housewife,"Ongar, Essex",Chocolate Orange CupcakesOrange and Cardamom Cupcakes,Chocolate and Strawberry Cake
 2,1,Mary-Anne,4,IN,45,Housewife,"Kidderminster, Worcestershire",Banoffee Cupcakes,Chocolate and Raspberry Opera cake
 2,1,Robert,3,IN,25,Photographer,London,Blackberry and Vanilla Cupcakeswith Liquorice Frosting,Genoise Layered Mousse Cakewith Chocolate Ganache
 2,1,Simon,9,IN,31,Rugby Coach,Norfolk,Guinness and Chocolate Cupcakes,Two-Tiered Chocolate Courgette Cake
@@ -85,7 +85,7 @@ Cinnamon and Cardamom Chelsea Bun"
 2,2,Holly,4,IN,31,Advertising executive,Leicester,Pesto Quiche,Milk Chocolate and Pistachio TartsTrifle Tarts
 2,2,Ian,2,IN,40,Fundraiser for English Heritage,"Dunstable, Bedfordshire","Stilton, Spinach and New Potato Quichewith Paprika and Walnut Pastry",UNKNOWN
 2,2,Janet,8,IN,63,Teacher of Modern Languages,"Formby, Liverpool",Quiche Printanière,Red Fruit TartsChocolate and Cherry Tarts
-2,2,Joanne,10,IN,NA,NA,NA,NA,NA
+2,2,Jo,10,IN,41,Housewife,"Ongar, Essex","Caramelised Onion, Gruyere and Thyme Quiche",Raspberry and Mascarpone Tarts with Lemon and Almond PastryHoney and Almond Tarts with Sweetcrust
 2,2,Mary-Anne,9,IN,45,Housewife,"Kidderminster, Worcestershire","Roasted Cauliflower, Cheese andCaramelised Onion Quiche",Butterscotch Brulée Tarts in Pecan PastryApple Rose Tarts
 2,2,Robert,5,IN,25,Photographer,London,Smoked Bacon and Kale Quiche,"Chocolate, Fennel and Ginger TartAlmond, Creme Patissiere and Poached Pear Tart"
 2,2,Urvashi,7,IN,40,Head of Marketing,"Enfield, London","Crab, Coriander and Coconut Quiche",Strawberry and Basil TartsElderflower and Honeycomb Tarts
@@ -97,7 +97,7 @@ Cinnamon and Cardamom Chelsea Bun"
 2,3,Holly,6,IN,31,Advertising executive,Leicester,Picnic Loaf,Stilton and Walnut Rolls
 2,3,Janet,8,IN,63,Teacher of Modern Languages,"Formby, Liverpool",Zupfe Loaf with Gruyère Cheese,Apple and Walnut Granary Rolls Red Onion Cottage Rolls
 2,3,Jason,7,IN,19,Civil Engineering Student,Croydon,Cheese and Onion Tear and Share Loaf,UNKNOWN
-2,3,Joanne,1,IN,NA,NA,NA,NA,NA
+2,3,Jo,1,IN,41,Housewife,"Ongar, Essex","Stromboli flavored with Mozzarella, Ham, and Picante Pepper",Unknown
 2,3,Mary-Anne,5,IN,45,Housewife,"Kidderminster, Worcestershire",Ploughman's Loaf,Herb and Walnut BreadsChocolate and Chilli Buns
 2,3,Robert,4,IN,25,Photographer,London,Rye and Coriander Seed Loaf,Blueberry Brioche RollsLemon and Poppy Seed Rolls
 2,3,Ian,10,OUT,40,Fundraiser for English Heritage,"Dunstable, Bedfordshire","Courgette, Caerphilly Cheese and Thyme Loaf",Walnut and Raisin RollsCracked Wheat Logs
@@ -109,7 +109,7 @@ Sweet Coconut Rolls"
 2,4,Janet,4,IN,63,Teacher of Modern Languages,"Formby, Liverpool",Christmas Marzipan Biscuits,"Raspberry Macarons
 Blackcurrant Macarons
 Almond Macarons"
-2,4,Joanne,8,IN,NA,NA,NA,NA,NA
+2,4,Jo,8,IN,41,Housewife,"Ongar, Essex",Lavender Biscuits,Blueberry MacaronsCoconut MacaronsStrawberry Macarons
 2,4,Mary-Anne,2,IN,45,Housewife,"Kidderminster, Worcestershire",Melting Moments,Blackcurrant and Mint MacaronsGooseberry and Elderflower MacaronsHazelnut Macarons
 2,4,Robert,7,IN,25,Photographer,London,Chocolate and Ginger Oat Biscuits,Strawberry and Lime MacaronsLemon MacaronsChocolate and Cardamom Macarons
 2,4,Yasmin,6,IN,43,Childminder,"West Kirby, The Wirral",Chocolate Chip and Pistachio Biscotti,Chocolate and Lime MacaronsCoffee and Walnut MacaronsPineapple and Coconut Macarons
@@ -123,7 +123,7 @@ Almond Macarons"
 2,4,Simon,NA,NA,31,Rugby Coach,Norfolk,NA,NA
 2,4,Urvashi,NA,NA,40,Head of Marketing,"Enfield, London",NA,NA
 2,5,Holly,4,IN,31,Advertising executive,Leicester,"Stilton, Potato and Caramelised Onion Pie",Lime Meringue Pie
-2,5,Joanne,6,IN,NA,NA,NA,NA,NA
+2,5,Jo,6,IN,41,Housewife,"Ongar, Essex",Salmon and Asparagus Pie,Apple and Raspberry Meringue Pie
 2,5,Mary-Anne,2,IN,45,Housewife,"Kidderminster, Worcestershire",Chicken and Bacon Pie,Midnight Meringue
 2,5,Yasmin,5,IN,43,Childminder,"West Kirby, The Wirral",Family Fish Pie,Peach and Raspberry Meringue Pie
 2,5,Jason,7,OUT,19,Civil Engineering Student,Croydon,Brown Down Chicken Pie,Plum Meringue Pie
@@ -138,7 +138,7 @@ Almond Macarons"
 2,6,Janet,5,IN,63,Teacher of Modern Languages,"Formby, Liverpool",Rhubarb and Ginger Baked Cheesecake,Orange and Nougatine Croquembouche
 2,6,Mary-Anne,4,IN,45,Housewife,"Kidderminster, Worcestershire",Tutti Fruitti Curd Baked Cheesecake,Orange and Praline Croquembouche with Cardamom Caramel
 2,6,Yasmin,2,OUT,43,Childminder,"West Kirby, The Wirral",Baked Amaretto Cheesecake,Rose Croquembouche
-2,6,Joanne,1,STAR BAKER,NA,NA,NA,NA,NA
+2,6,Jo,1,STAR BAKER,41,Housewife,"Ongar, Essex",Rum and Raisin Baked Cheesecake,Limoncello and White Chocolate Croquembouche
 2,6,Ben,NA,NA,31,Graphic Designer,Northampton,NA,NA
 2,6,Ian,NA,NA,40,Fundraiser for English Heritage,"Dunstable, Bedfordshire",NA,NA
 2,6,Jason,NA,NA,19,Civil Engineering Student,Croydon,NA,NA
@@ -147,7 +147,7 @@ Almond Macarons"
 2,6,Simon,NA,NA,31,Rugby Coach,Norfolk,NA,NA
 2,6,Urvashi,NA,NA,40,Head of Marketing,"Enfield, London",NA,NA
 2,7,Holly,1,IN,31,Advertising executive,Leicester,"White Chocolate, Hazelnut and Raspberry Genoise Mousse Cake","Apricot, Macadamia and White Chocolate PinwheelsAlmond CroissantsApple, Raisin and Cinnamon Plaits"
-2,7,Joanne,3,IN,NA,NA,NA,NA,NA
+2,7,Jo,3,IN,41,Housewife,"Ongar, Essex",Raspberry & Strawberry Mousse Cake,Pain Aux RaisinChocolate TwistsBanana and Raisin Pastries
 2,7,Mary-Anne,2,IN,45,Housewife,"Kidderminster, Worcestershire",Chocolate and Orange Mousse Cake,Raspberry Rose DanishesPraline SpiralsAlsatian Plaited Danishes
 2,7,Janet,4,OUT,63,Teacher of Modern Languages,"Formby, Liverpool",Chocolate Amaretto Mousse Cake,Pain Aux RaisinPlain CroissantPain Au Chocolat
 2,7,Ben,NA,NA,31,Graphic Designer,Northampton,NA,NA
@@ -160,7 +160,7 @@ Almond Macarons"
 2,7,Yasmin,NA,NA,43,Childminder,"West Kirby, The Wirral",NA,NA
 2,8,Holly,2,Runner-up,31,Advertising executive,Leicester,Banoffee Inspired Mille Feuille,Strawberry and Cream Meringue NestGooseberry and Elderflower 'Bakewell' TartsNeapolitan Ice-Cream Sandwich
 2,8,Mary-Anne,3,Runner-up,45,Housewife,"Kidderminster, Worcestershire",Lemon and Ginger Mille Feuille,Fruit Tarts with Elderflower CustardStrawberry and Rhubarb CheesecakesBlack Fruit Meringue with Everlasting Syllabub
-2,8,Joanne,1,WINNER,NA,NA,NA,NA,NA
+2,8,Jo,1,WINNER,41,Housewife,"Ongar, Essex",Raspberry and Blueberry Mille Feuille,"Mini Victoria SandwichesRaspberry, White Chocolate and Pistachio Mini MeringuesMini Banoffee Pie with Banana Mousse"
 2,8,Ben,NA,NA,31,Graphic Designer,Northampton,NA,NA
 2,8,Ian,NA,NA,40,Fundraiser for English Heritage,"Dunstable, Bedfordshire",NA,NA
 2,8,Janet,NA,NA,63,Teacher of Modern Languages,"Formby, Liverpool",NA,NA
