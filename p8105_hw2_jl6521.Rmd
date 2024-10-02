@@ -18,6 +18,7 @@ Description of the dataset:
 
 * The dataset contains the station's name, location (its latitude and longitude), routes served in each stations, whether there are vendings, entrance type, and ada. 
 * Data cleaning: So far I convert the entry variable from character to logical variable; clean the column names of the dataset. The dimension of the dataset is 1868 observations with 19 columns. 
+
 ```{r problem1-1}
 nyc_transit = 
   read_csv("./data/NYC_Transit_Subway_Entrance_And_Exit_Data.csv") %>% 
@@ -32,9 +33,7 @@ nyc_transit =
   
 ```
 
-* There are 465 distinct stations. 
-* There are 468 stations that are ADA compliant. 
-* The proportion of station entrances / exits without vending allow entrance is 0.1044. 
+
 ```{r problem1-2}
 nyc_transit[["line_name"]] = paste(nyc_transit[["station_name"]], nyc_transit[["line"]], sep = " ")
 distinct_station = nrow(distinct(nyc_transit,line_name))
@@ -46,6 +45,7 @@ proportion = no_vending/allow_entrance
 
 * There are `r distinct_station` distinct stations serve the A train. 
 * Of the stations that serve the A train, `ada_in_A` are ADA compliant.
+* The proportion of station entrances / exits without vending allow entrance is `r proportion`.
 ```{r problem 1-3}
 transit_new = 
   nyc_transit %>%
@@ -87,7 +87,7 @@ Professor_Trash_Wheel = read_excel("./data/202409 Trash Wheel Collection Data.xl
 
 Gwynnda_Trash_Wheel = read_excel("./data/202409 Trash Wheel Collection Data.xlsx",
                          sheet = "Gwynnda Trash Wheel",
-                         range = "A2:L159",
+                         range = "A2:L265",
                          na = c("NA", ".", "")) %>% 
   janitor::clean_names() %>%
   filter(!is.na(dumpster)) %>% 
@@ -109,7 +109,7 @@ total_cigarette = combined_trash_dataset %>%
   sum(na.rm = TRUE)
 
 ```
-Data description: in this combined dataset, there are `r nrow_trash` observations. Key variables are weight and volume of the trash (weight_tons, volume_cubic_yards), different categories of trash (plastic_bottles, polystyrene, cigarette_butts, glass_bottles, plastic_bags, wrappers, sports_balls), and also the number of Maryland homes that are provided with electricity.
+Data description: in this combined dataset, there are `r nrow_trash` observations. Key variables are weight and volume of the trash (`weight_tons`, volume_cubic_yards), different categories of trash (plastic_bottles, polystyrene, cigarette_butts, glass_bottles, plastic_bags, wrappers, sports_balls), and also the number of Maryland homes that are provided with electricity.
 
 The total weight of trash collected by Professor Trash Wheel is `r total_weight`. The total number of cigarette butts collected by Gwynnda in June of 2022 is `r total_cigarette`. 
 
@@ -140,6 +140,9 @@ results = read_csv("./data/gbb_datasets/results.csv",
   rename(season = series) %>% 
   mutate(
     baker = ifelse(baker =="Joanne","Jo",baker)
+  ) %>%
+  mutate(
+    result = ifelse(baker=="Diana" & episode >5, NA, result)
   )
   
 
@@ -152,7 +155,7 @@ final_df = anti_join(bakers_results, bakes, by = c("season", "baker", "episode")
 final_df2 = anti_join(bakes, bakers_results, by = c("season", "baker", "episode"))
 
 merged_bake_info = left_join(bakers_results, bakes, by = c("season", "baker", "episode"))%>% 
-  arrange(season, episode)
+  arrange(season, episode) 
 
 write_csv(merged_bake_info, "./final_baking_dataset.csv")
 ```
@@ -163,12 +166,14 @@ I also rename the column of "series" to be "season" since it's more informative.
 
 When I did `anti_join()`, I found that the bakers' names in bakers are full names. After comparing the name, I think for the other two sheets, bakers are only kept with first names. Therefore I changed the "bakers" with only the first name.
 
-I also found that in "bakes", some bakers are names "Jo" with the quotation marks, so I remove it in the bakes document. When I did antijoin, there are 8 "Joanne" on the results but not on the bakers sheet; and there are 8 "Jo" on the bakes but not results sheet. I compared between the two names and found that they appear in the same seasons and episodes! Therefore, I think that they are the same person. I changed "Joanne" to "Jo" in that case. 
+I also found that in "bakes", some bakers are names "Jo" with the quotation marks, so I remove it in the bakes document. When I did antijoin, there are names in bakers that not appearing in the bakes, names in bakers that not appearing in the results, or names in the results not appearing in the bakers, etc. There are 8 "Joanne" on the results but not on the "bakers" or "bake" sheet; and there are 8 "Jo" on the bakes but not results sheet. In the "bakes", there supposed to be all the bakers information, but "Joanne" is not there. I compared between the two names and found that they appear in the same seasons and episodes! Therefore, I think that they are the same person, and I changed "Joanne" to "Jo" in that case.
 
-There are names in bakers that not appearing in the bakes, names in bakers that not appearing in the results, or names in the results not appearing in the bakers, etc. 
+Besides, in the "results" sheet, I found that the result for Diana at season 5 episode 5 is WD, meaning withdraw, and there are not any technical scores. After episode 5, the results for Diana are still IN, but there are not any technical rank there. Therefore, I think the data may be incorrect. I changed the result of Diana after episode 5 be NA. 
+
 Next, I performed left join first on results with bakers, and next join with bakes. 
 
 Briefly discuss the final dataset:
+
 My final dataset contains series and episode, bakers information (name, age, occupation, hometown), infomation of their bakes (signature bake, technical challenge, and show stopper), and the final result. 
 
 ## Reader-friendly table
