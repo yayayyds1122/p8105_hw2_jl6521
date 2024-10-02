@@ -21,7 +21,7 @@ Description of the dataset:
 
 ```{r problem1-1}
 nyc_transit = 
-  read_csv("./data/NYC_Transit_Subway_Entrance_And_Exit_Data.csv") %>% 
+  read_csv("./data/NYC_Transit_Subway_Entrance_And_Exit_Data.csv", show_col_types = FALSE) %>%
   janitor::clean_names() %>% 
   mutate(
     entry = case_match(
@@ -118,8 +118,7 @@ The total weight of trash collected by Professor Trash Wheel is `r total_weight`
 ```{r problem 3-1 import and clean datasets}
 # import and clean bakers data
 bakers = read_csv("./data/gbb_datasets/bakers.csv",
-                  na = c("NA","",".","N/A")
-                  ) %>% 
+                  na = c("NA","",".","N/A"), show_col_types = FALSE) %>%  
   janitor::clean_names() %>% 
   rename(season = series) %>% 
   mutate(baker=sub(" .*", "", baker_name))%>% 
@@ -127,7 +126,7 @@ bakers = read_csv("./data/gbb_datasets/bakers.csv",
   
 # import and clean bakes data
 bakes = read_csv("./data/gbb_datasets/bakes.csv",
-                   na = c("NA","",".","N/A")) %>% 
+                   na = c("NA","",".","N/A"), show_col_types = FALSE) %>% 
   janitor::clean_names()%>% 
   rename(season = series)%>% 
   mutate(baker=sub('"Jo"',"Jo",baker))
@@ -135,7 +134,7 @@ bakes = read_csv("./data/gbb_datasets/bakes.csv",
 # import and clean results data
 results = read_csv("./data/gbb_datasets/results.csv",
                    na = c("NA","",".","N/A"),
-                   skip = 2) %>% 
+                   skip = 2,show_col_types = FALSE) %>% 
   janitor::clean_names()%>% 
   rename(season = series) %>% 
   mutate(
@@ -188,8 +187,8 @@ table = merged_bake_info %>%
 3. Winners usually have high rank of techinical challenge, but for star bakers, the technical score seems to not matter much. 
 
 ## viewership data
-```{r viewship data}
-viewers = read_csv("./data/gbb_datasets/viewers.csv") %>% 
+```{r viewship data, show_col_types = FALSE}
+viewers = read_csv("./data/gbb_datasets/viewers.csv", show_col_types = FALSE) %>% 
   janitor::clean_names()%>%
   head(10) 
 
